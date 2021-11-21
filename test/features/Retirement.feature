@@ -5,17 +5,23 @@ Feature: Retirement Calculator
   So that I can plan for retiring.
 
 
-  @getData
-  Scenario Outline: Get user input into program
-    Given The year and month are empty
+  @get_retirement_age
+  Scenario Outline: Get user birth year and calculate retirement age
+    Given The year is empty
     When Birth year and birth month are entered
-    Then Birth date contains birth year and birth month as an array.
+    Then Retirement age should be calculated.
 
     Examples:
-      | Birth year | Birth month | Birth date |
-      | 1993       | 4           | [1993,4]   |
-      | 1965       | 4           | [1955,4]   |
-      | 2000       | 5           | [2000,5]   |
+      | Birth year |  Birth date |
+      | 1993       |  [1993,4]   |
+      | 1965       |  [1955,4]   |
+      | 2000       |  [2000,5]   |
+      | 1965       |  [1955,4]   |
+      | 1965       |  [1955,4]   |
+      | 1965       |  [1955,4]   |
+      | 1965       |  [1955,4]   |
+      | 1965       |  [1955,4]   |
+      | 1965       |  [1955,4]   |
 
 
   @r_calc
