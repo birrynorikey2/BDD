@@ -7,48 +7,22 @@ Feature: Retirement Calculator
 
   @get_retirement_age
   Scenario Outline: Get user birth year and calculate retirement age
-    Given The year is empty
-    When Birth year and birth month are entered
-    Then Retirement age should be calculated.
+    Given The year is "<year>" 
+    When Birth "<year>" is between 1943 and 1954
+    Then Retirement age should be "<correct>".
 
     Examples:
-      | Birth year |  Birth date |
-      | 1993       |  [1993,4]   |
-      | 1965       |  [1955,4]   |
-      | 2000       |  [2000,5]   |
-      | 1965       |  [1955,4]   |
-      | 1965       |  [1955,4]   |
-      | 1965       |  [1955,4]   |
-      | 1965       |  [1955,4]   |
-      | 1965       |  [1955,4]   |
-      | 1965       |  [1955,4]   |
+      | year  |  correct  |
+      | 1943  |  [66,0]   |
+      | 1944  |  [66,0]   |
+      | 1945  |  [66,0]   |
+      | 1946  |  [66,0]   |
+      | 1947  |  [66,0]   |
+      | 1948  |  [66,0]   |
+      | 1949  |  [66,0]   |
+      | 1950  |  [66,0]   |
+      | 1951  |  [66,0]   |
+      | 1952  |  [66,0]   |
+      | 1953  |  [66,0]   |
+      | 1954  |  [66,0]   |
 
-
-  @r_calc
-  Scenario Outline: Calculate the retirement age including months
-    Given the birth year and birth month are valid
-    When retirement age is calculated
-    Then The retirement age calculated based on year of birth is printed out
-    And The retirement age with month is stored into birth date array
-    
-    
-        Examples:
-      | Birth year | Birth month |Age     | Plus    |   Birth date  |                  String                          |
-      | 1993       | 4           |67      | 0       | [1993,4,67,0] | Your full retirement age is:  67                 |
-      | 1955       | 4           |66      | 2       | [1955,4,66,2] | Your full retirement age is:  66  and  2  months |  
-      | 2000       | 5           |67      | 0       | [2000,5,67,0] | Your full retirement age is:  67                 |
-    
-    
-    
-    
-  @r_date
-    Scenario Outline: Translate the retirement age into a retirement date
-    Given the birth year ,birth month, age, and plus(months till retirement)
-    When retirement age is translated
-    Then The retirement date should be printed as a string
-
-        Examples:
-      |   Birth date  |         Retirement date       |
-      | [1993,4,67,0] | This will be in April of 2060 |
-      | [1955,4,66,2] | This will be in June of 2021  |
-      | [2000,5,67,0] | This will be in May of 2067   |
